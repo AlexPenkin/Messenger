@@ -1,0 +1,15 @@
+include ./includes/main.pug
+include ./includes/header.pug
+div.adminWrap.col-lg-6.col-md-6.col-sm-12.col-xs-12.col-md-offset-3.col-lg-offset-3
+  h1.h Ожидающие подтверждения:
+  each item in uncommitedUsers
+
+    div.userItemAdm
+      span #{item.username}
+      span.role Выберите статус доступа пользователя чтобы одобрить его:
+      br
+      select.role(name = 'role')
+        option(value = "#{item.role}") #{item.role}
+        option(value ='user') user
+        option(value ='superUser') superUser
+        option(value ='admin') admin

@@ -45,6 +45,7 @@ var index = require(__dirname + '/modules/routes/index.js');
 var login = require(__dirname + '/modules/routes/login.js');
 var signUp = require(__dirname + '/modules/routes/signUp.js');
 var logOut = require(__dirname + '/modules/routes/logOut.js');
+var adminPanel = require(__dirname + '/modules/routes/adminPanel.js');
 
 app.get("/:page?", function(req, res) {
   var page = req.params.page;

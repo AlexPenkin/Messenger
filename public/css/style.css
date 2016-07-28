@@ -94,6 +94,19 @@ width: 100px;
     margin-top: 55px;
     height: calc(100% - 27px - 28px);
 }
+.userItemAdm {
+
+  height: 100px;
+  border: solid thin black;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+.role {
+  float: right;
+}
+.h{
+  margin-top: 70px;
+}
 
 button,
 button:active,

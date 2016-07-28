@@ -1,13 +1,15 @@
 block header
 
 div.headerWrap.drawer.drawer--left
-  header(role="banner")      
+  header(role="banner")
     button(type="button").drawer-toggle.drawer-hamburger
       span.sr-only toggle navigation
       span.drawer-hamburger-icon
   nav(role="navigation").drawer-nav
     ul
       li #{user.username}
+      a(href = '/adminPanel') Админка
+      br
       button#logOut Выйти
 
 
