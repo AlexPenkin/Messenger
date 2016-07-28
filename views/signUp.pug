@@ -1,0 +1,15 @@
+include ./includes/main.pug
+
+//include ./includes/header.pug
+
+div.logQuadWrap
+  div.signBlock.logQuad.col-lg-2.col-md-2.col-sm-12.col-xs-12.col-md-offset-5.col-lg-offset-5
+    p Регистрация
+    form(name = 'signUp') 
+      input(type ='input' placeholder = "Логин" name= 'username').form-control#username
+      input(type ='password' placeholder = "Пароль" name= 'password').form-control#password
+      input(type ='email' placeholder = "email" name= 'email').form-control#email
+      a(href = '/login')#Reg Войти
+      button(type= 'button').awesomeBut#sendBut Зарегистрироваться
+      p#message
+script(type='text/javascript', src='./js/signUp.js')
