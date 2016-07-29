@@ -6,8 +6,7 @@ var online = document.getElementById('onlineUsers');
 
 
 
-send.addEventListener("click", function(event) {
-  console.log(input.value);
+send.addEventListener("click", function(event) {  
   if (input.value != '') {
     socket.emit('sendOnServer', {
       message: input.value,
@@ -42,7 +41,7 @@ socket.on('onlineUsers', function(data) {
 
 socket.on('successfulMessage', function(data) {
   var newMessage = document.createElement("p");
-  newMessage.innerHTML = data.user + " отправил: " + data.message;
+  newMessage.innerHTML = data.user + ": " + data.message;
   userMessages.appendChild(newMessage);
   input.value = '';
 });

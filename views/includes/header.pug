@@ -8,7 +8,10 @@ div.headerWrap.drawer.drawer--left
   nav(role="navigation").drawer-nav
     ul
       li #{user.username}
-      a(href = '/adminPanel') Админка
+      if(user.role == 'admin')
+        a(href = '/adminPanel') Админка
+      br
+      a(href = '/') Контакты
       br
       button#logOut Выйти
 

@@ -1,15 +1,23 @@
 include ./includes/main.pug
 include ./includes/header.pug
 div.adminWrap.col-lg-6.col-md-6.col-sm-12.col-xs-12.col-md-offset-3.col-lg-offset-3
+  p.h Поиск по всем юзерам
+  input#search(type = 'input' placeholder = 'Введите логин чтобы перейти в его настройки профиля')
+  div#results
   h1.h Ожидающие подтверждения:
   each item in uncommitedUsers
-
     div.userItemAdm
-      span #{item.username}
+      span.username #{item.username}
       span.role Выберите статус доступа пользователя чтобы одобрить его:
       br
-      select.role(name = 'role')
-        option(value = "#{item.role}") #{item.role}
-        option(value ='user') user
-        option(value ='superUser') superUser
-        option(value ='admin') admin
+      select.roleSelect(name = 'role')
+        option(value = "undefined") Ожидает одобрения
+        option(value ='user') Пользователь
+        option(value ='admin') Администратор
+        option(value ='decline' style = 'color: red;') Отклонить
+      br
+      button(style = 'float: right; margin-top: 10px;').awesomeBut.defineUser Одобрить и убрать из списка
+      p.message
+
+script(type='text/javascript', src= './js/defineUser.js')
+script(type='text/javascript', src= './js/searchUser.js')
