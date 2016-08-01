@@ -8,7 +8,7 @@ app.app.route('/defineUser')
       res.redirect('/login')
     }
   })
-  .post(function(req, res, next) {  
+  .post(function(req, res, next) {
     function defineUser() {
       return new Promise((resolve, reject) => {
         User.update({

@@ -16,7 +16,7 @@ app.app.route('/searchUser')
         username: {
           $regex: query
 
-        }
+        }, role:{$not:{$eq: 'undefined'}}
       }).cursor();
       stream.on('data', function(doc) {
         console.log(doc);

@@ -95,8 +95,8 @@ width: 100px;
     height: calc(100% - 27px - 28px);
 }
 .userItemAdm {
-
-  height: 100px;
+  display: inline-block;
+  min-height: 100px;
   border: solid thin black;
   border-radius: 5px;
   margin: 10px 0;
@@ -117,6 +117,19 @@ width: 100px;
 }
 #search, #result {
   width: 100%;
+}
+.userSWrap {
+  margin-top: 80px;
+}
+.users {
+  cursor: pointer;
+  color: red;
+}
+.active {
+  color: green;
+  font-size: 20px;
+  cursor: pointer;
+
 }
 
 

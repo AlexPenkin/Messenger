@@ -1,12 +1,15 @@
+'use strict'
 document.addEventListener("DOMContentLoaded", ready);
+console.log('TEST');
 
 function ready() {
-  var buttonLogOut = document.getElementById('logOut');  
+  var buttonLogOut = document.getElementById('logOut');
   buttonLogOut.addEventListener("click", function(){logOut('/logOut').then(
-     window.location.replace("/login")).catch(console.log('Error'))});
+     window.location.replace("/login")).catch(err => console.log(err))});
 }
 
 function logOut(url) {
+  console.log('promise');
   return new Promise(function(resolve, reject) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url);
@@ -25,7 +28,7 @@ function logOut(url) {
       }
     };
 
-    xhr.onerror = function() {
+    xhr.onerror = function(err) {
       reject(new Error("Network Error"));
     };
 

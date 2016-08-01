@@ -1,0 +1,20 @@
+include ./includes/main.pug
+include ./includes/header.pug
+block userPage
+  div.userSWrap.col-lg-6.col-md-6.col-sm-12.col-xs-12.col-md-offset-3.col-lg-offset-3
+    p#login Логин: #{searchUser.username}
+    p Почта: #{searchUser.email}
+    p Уровень полномочий: #{searchUser.role}
+    if (user.role == 'admin')
+      h1 Разрешить пользователю общаться с:
+      ul
+        li#allU  Со всеми (Администратор)
+          each userS in users
+            li.users #{userS.username}
+    button#but Сохранить
+
+
+script.
+  var USER = '#{searchUser.username}';
+
+script(type='text/javascript', src= '/js/assignUser.js')

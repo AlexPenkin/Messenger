@@ -14,7 +14,7 @@ var passport = require(__dirname + '/modules/passport.js')
 
 var d = new Date();
 
-server.listen('7777', () => console.log(`App worked on port 8888 ${d.toLocaleString()}`));
+server.listen('7777', () => console.log(`App worked on port 7777 ${d.toLocaleString()}`));
 const io = require('socket.io')(server);
 module.exports.io = io;
 
@@ -49,6 +49,8 @@ var adminPanel = require(__dirname + '/modules/routes/adminPanel.js');
 var defineUser = require(__dirname + '/modules/routes/defineUser.js');
 var moderation = require(__dirname + '/modules/routes/moderation.js');
 var searchUser = require(__dirname + '/modules/routes/searchUser.js');
+var userPage = require(__dirname + '/modules/routes/userPage.js');
+var assignUser= require(__dirname + '/modules/routes/assignUser.js');
 
 app.get("/:page?", function(req, res) {
   var page = req.params.page;
