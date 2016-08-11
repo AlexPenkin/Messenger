@@ -10,7 +10,6 @@ app.app.route('/searchUser')
   function searchUser(query) {
 
     return new Promise((resolve, reject) => {
-      console.log("promise");
       var results = new Array;
       var stream = User.find({
         username: {
@@ -27,7 +26,6 @@ app.app.route('/searchUser')
       }).on('close', function() {
         console.log('done');
         resolve(results)
-
       });
 
     })

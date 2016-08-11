@@ -5,13 +5,18 @@ block userPage
     p#login Логин: #{searchUser.username}
     p Почта: #{searchUser.email}
     p Уровень полномочий: #{searchUser.role}
+    a(href = '/startChat/' + searchUser.username) Написать
     if (user.role == 'admin')
-      h1 Разрешить пользователю общаться с:
-      ul
-        li#allU  Со всеми (Администратор)
-          each userS in users
-            li.users #{userS.username}
-    button#but Сохранить
+      div.assWrap
+        div#assigned
+          ul#aUL Разрешенный круг пользователей:
+            each userC in searchUser.contacts
+              li !{userC}
+        //button#but Сохранить
+        div#unassigned
+          ul#uUL Все пользователи
+            each userS in users
+              li #{userS.username}
 
 
 script.

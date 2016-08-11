@@ -100,6 +100,7 @@ width: 100px;
   border: solid thin black;
   border-radius: 5px;
   margin: 10px 0;
+  width: 100%;
 }
 .role, .roleSelect {
   float: right;
@@ -131,7 +132,38 @@ width: 100px;
   cursor: pointer;
 
 }
+#assigned {
+  display: inline ;
+  width: 45%;
+  border: solid 1px black;
+  margin-right: 5%;
+  padding: 10px;
+  min-height: 20px;
+}
+#unassigned {
+  display: inline;
+  width: 45%;
+  border: solid 1px black;
+  padding: 10px;
+  min-height: 20px;
+  overflow: scroll;
+}
+.assWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.contacts {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.contact {
+  height: 40px;
+  width: 100%;
 
+}
 
 button,
 button:active,

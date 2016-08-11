@@ -51,6 +51,8 @@ var moderation = require(__dirname + '/modules/routes/moderation.js');
 var searchUser = require(__dirname + '/modules/routes/searchUser.js');
 var userPage = require(__dirname + '/modules/routes/userPage.js');
 var assignUser= require(__dirname + '/modules/routes/assignUser.js');
+var unassignUser= require(__dirname + '/modules/routes/unassignUser.js');
+var contacts= require(__dirname + '/modules/routes/contacts.js');
 
 app.get("/:page?", function(req, res) {
   var page = req.params.page;

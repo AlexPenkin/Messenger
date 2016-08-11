@@ -1,7 +1,7 @@
 'use strict'
 var app = require(__dirname + '/../../app.js');
 const User = require(__dirname + '/../schemaes/User.js');
-app.app.route('/assignUser')
+app.app.route('/unassignUser')
   .post(function(req, res, next) {
     var bodys = req.body;
     console.log(bodys);
@@ -11,7 +11,7 @@ app.app.route('/assignUser')
           User.update({
             username: bodys['user']
           }, {
-            $addToSet: {
+            $pull: {
               contacts: bodys.addUser
             }
           }, function(err, num) {
@@ -23,6 +23,7 @@ app.app.route('/assignUser')
                 resolve(num);
               }
           })
+
       })
     }
     pushContacts().then(resp => {

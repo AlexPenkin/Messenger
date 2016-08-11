@@ -18,7 +18,9 @@ app.app.route('/user/:username')
             username: {
               $not: {
                 $eq: req.params.username
-              }
+              },
+              $nin: userObj.searchUser.contacts
+
             },
             role: {
               $not: {
@@ -27,7 +29,6 @@ app.app.route('/user/:username')
             }
           }).cursor();
           stream.on('data', function(doc) {
-            console.log('there' + doc);
             response.users.push(doc);
           }).on('error', function(err) {
             console.log(err);
@@ -54,7 +55,6 @@ app.app.route('/user/:username')
         })
       }
       searchUser(query).then(resp => searchAllUsersExceptYourself(resp)).then(response => {
-        console.log(response);
         res.render('userPage', response);
       }).catch(err => {
         console.log(err);

@@ -1,24 +1,19 @@
 'use strict'
 let users = document.getElementsByClassName('users');
 let allU = document.getElementById('allU');
-let but = document.getElementById('but');
+let unassigned = document.getElementById('unassigned');
+let assigned = document.getElementById('assigned');
 let user = USER;
+let unassignedUsers = unassigned.getElementsByTagName('LI');
+let aUL = document.getElementById('aUL');
+let uUL = document.getElementById('uUL');
+console.log(unassignedUsers);
 
-
-function addClass(elem) {
-  elem.className = 'users active'
-};
-
-function removeClass(elem) {
-  elem.className = 'users'
-};
-
-function assignUser(user, url) {
-  let activeUsers = document.getElementsByClassName('active');
-  let json = {user: user};
-  for (let i = 0; i < activeUsers.length; i++) {
-    json['user' + i] = activeUsers[i].innerHTML;
-  }
+function assignUser(user, addUser, url) {
+  let json = {
+    user: user
+  };
+  json['addUser'] = addUser;
   console.log(json);
   return new Promise((resolve, reject) => {
     var xhr = new XMLHttpRequest();
@@ -40,22 +35,26 @@ function assignUser(user, url) {
   })
 }
 
-allU.addEventListener('click', function() {
-  for (let i = 0; i < users.length; i++) {
-    users[i].className = 'users active';
-  }
-})
-but.addEventListener('click', function() {
-  assignUser(user, '/assignUser').then(res => console.log(res))
-})
-
-for (let i = 0; i < users.length; i++) {
-  users[i].addEventListener('click', function() {
-    if (users[i].className == 'users active') {
-      removeClass(users[i])
-    } else {
-      addClass(users[i]);
-    }
-
-  });
+function moveUser(target, elem) {
+  target.style = 'display: none;'
+  let node = document.createElement("LI");
+  let textnode = document.createTextNode(target.innerHTML);
+  node.appendChild(textnode);
+  elem.appendChild(node);
 }
+
+function addListener(target, url, whereToMove){
+  target.addEventListener('click', function(e) {
+    if (e.target.tagName == "LI") {
+      assignUser(user, e.target.innerHTML, url).then(res => {
+        let status = JSON.parse(res)
+        if (status.status == 'success') {
+          moveUser(e.target, whereToMove);
+        }
+      });
+    }
+  })
+}
+
+addListener(unassigned, '/assignUser', aUL);
+addListener(assigned, '/unassignUser', uUL);
