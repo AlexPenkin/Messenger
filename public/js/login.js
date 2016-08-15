@@ -15,7 +15,7 @@ function ready() {
   buttonSend.addEventListener("click", function(){login('/login').then(response => setTimeout(function() {
      console.log('there');
      window.location.replace("/");
-   }, 2000)).catch(error => message.innerHTML = 'Неправильный логин или пароль')});
+   } /*2000*/)).catch(error => message.innerHTML = 'Неправильный логин или пароль')});
 }
 
 function login(url) {

@@ -4,23 +4,36 @@ const User = require(__dirname + '/../schemaes/User.js');
 
 app.app.route('/contacts')
   .get(function(req, res, next) {
-    if(req.user) {
-    let userObj = {
-      user: req.user
+
+
+    function findYourSelf() {
+      return new Promise((resolve, reject) => {
+        User.findOne({
+          username: req.user.username
+        }, function(err, pers) {
+          if (err) {
+            reject(err);
+            console.log(err);
+          } else {
+            resolve({
+                user: pers
+              });
+          }
+        });
+      });
+    };
+
+    if (req.user) {
+      let userObj = {
+        user: new Object()
+      }
+
+      findYourSelf().then(resp => res.render('contacts', resp)).catch(err => console.log(err));
+
+    } else {
+      res.redirect('/login');
     }
-    res.render('contacts', userObj)
-  } else {
-    res.redirect('/login');
-  }
 
 
 
-});
-
-function add (a) {
-  var a = a;
-  return function(b){
-    console.log(a + b);
-  }
-}
-add(2)(3);
+  });

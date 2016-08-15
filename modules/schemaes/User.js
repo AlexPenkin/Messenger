@@ -1,11 +1,15 @@
 const db = require(__dirname + '/../db.js');
 
 var Chats = new db.Schema({
+  chatName: String,
+  PMID: String,
   messages: [{
     name: String,
     message: String,
-    date: Date
+    date: Date,
+    readed: Boolean
   }],
+  initializator: String,
   participant: String,
   date: {
     type: Date,
@@ -38,6 +42,7 @@ var User = new db.Schema({
   },
   password: String,
   email: String,
+  online: String,
   date: {
     type: Date,
     default: Date.now
