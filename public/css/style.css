@@ -70,6 +70,7 @@ body, html {
   height: calc(100% - 27px );
   display: inline-block;
   position: relative;
+  overflow: auto;
 }
 .chatUserInputs {
   display: flex;

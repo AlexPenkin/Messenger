@@ -48,6 +48,22 @@ app.app.route('/startChat/:username')
       });
     };
 
+    function loadComments () {
+      return new Promise((resolve, reject) =>{
+        User.find({username: selfName}, {
+          'conversations.$.chatName' : chatName
+        }), function (err,pers) {
+          if (err) {
+            reject(err);
+            console.log(err);
+          } else {
+            console.log(pers);
+            resolve(pers);
+          }
+        }
+      });
+    }
+
     function findRecipient() {
 
       return new Promise((resolve, reject) => {
@@ -84,6 +100,7 @@ app.app.route('/startChat/:username')
             if (user.conversations[i].chatName == chatName ) {
               console.log('Chat really exist!!!');
               obj.PMID = user.conversations[i].PMID;
+              userObj.messages = user.conversations[i].messages;
               return;
             } else if ((user.conversations[i].chatName != chatName) && (i == (user.conversations.length - 1))) {
               user.conversations.push({
