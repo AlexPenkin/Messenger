@@ -21,7 +21,17 @@ function ready() {
   password = document.getElementById('password');
   email = document.getElementById('email');
   message = document.getElementById('message');
-  buttonSend.addEventListener("click touchstart", function() {
+  buttonSend.addEventListener("click", function() {
+    signUp('/signUp').then(res => {
+      message.innerHTML = res;
+      setTimeout(function() {
+        window.location.replace("/");
+      }, 2000)
+    }).catch(err => {
+      message.innerHTML = 'Ошибка сохранения в базу данных';
+    })
+  })
+  buttonSend.addEventListener("touchstart", function() {
     signUp('/signUp').then(res => {
       message.innerHTML = res;
       setTimeout(function() {

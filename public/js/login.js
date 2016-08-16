@@ -23,7 +23,13 @@ function ready() {
      console.log('there');
      window.location.replace("/");
    } /*2000*/)).catch(error => message.innerHTML = 'Неправильный логин или пароль')});
+   buttonSend.addEventListener("touchstart", function(){login('/login').then(response => setTimeout(function() {
+      console.log('there');
+      window.location.replace("/");
+    } /*2000*/)).catch(error => message.innerHTML = 'Неправильный логин или пароль')});
 }
+
+
 
 function login(url) {
   console.log(username);
