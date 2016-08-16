@@ -12,6 +12,8 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
+    "gm": "^1.23.0",
+    "mkdirp": "^0.5.1",
     "mongoose": "^4.5.7",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

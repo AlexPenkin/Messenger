@@ -1,13 +1,15 @@
 body, html {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 30px);
 }
+
 /*.headerWrap {
 
   width: 100%;
   height: 57px;
 
 }*/
+
 .drawer-hamburger {
   margin-left: 20px;
   z-index: 101;
@@ -15,22 +17,19 @@ body, html {
 .drawer-nav {
   width: 20em;
   z-index: 0;
-
 }
 .drawer--left.drawer-open .drawer-hamburger {
   left: 20.2em;
 }
 .drawer--left .drawer-hamburger, .drawer--left.drawer-open .drawer-nav, .drawer--left.drawer-open .drawer-navbar .drawer-hamburger {
-    left: 0px;
-    z-index: 102;
-  }
-
+  left: 0px;
+  z-index: 102;
+}
 .logQuadWrap {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
-
   top: 0;
   z-index: 99;
 }
@@ -40,7 +39,7 @@ body, html {
   text-align: center;
   display: inline-block;
 }
-.logQuad input{
+.logQuad input {
   /*border: solid 1px gray;*/
   display: inline-block;
   margin: 15px 0;
@@ -55,7 +54,8 @@ body, html {
   cursor: pointer;
 }
 .awesomeBut:hover {
-  background: #7cde9c;;
+  background: #7cde9c;
+  ;
   color: white;
 }
 #message {
@@ -67,7 +67,7 @@ body, html {
 }
 .chatUserMessages {
   /*border: solid thin black;*/
-  height: calc(100% - 27px );
+  height: calc(100% - -29px);
   display: inline-block;
   position: relative;
   overflow: auto;
@@ -77,14 +77,14 @@ body, html {
   flex-direction: row;
   align-items: center;
 }
-.chatInput{
+.chatInput {
   width: 100%;
 }
-.chatUserInputs{
+.chatUserInputs {
   padding: 0;
 }
 .chatSend {
-width: 100px;
+  width: 100px;
 }
 #onlineUsers {
   position: absolute;
@@ -92,8 +92,8 @@ width: 100px;
   bottom: 0;
 }
 .chatWrap {
-    margin-top: 55px;
-    height: calc(100% - 27px - 28px);
+  margin-top: 60px;
+  height: calc(100% - 27px - 28px);
 }
 .userItemAdm {
   display: inline-block;
@@ -106,8 +106,8 @@ width: 100px;
 .role, .roleSelect {
   float: right;
 }
-.h{
-  margin-top: 70px;
+.h {
+  margin-top: 40px;
 }
 .faded {
   /*display:none;*/
@@ -115,13 +115,13 @@ width: 100px;
   transition: opacity 1s;
 }
 .fadedDone {
-  display:none;
+  display: none;
 }
 #search, #result {
   width: 100%;
 }
 .userSWrap {
-  margin-top: 80px;
+  margin-top: 60px;
 }
 .users {
   cursor: pointer;
@@ -131,10 +131,9 @@ width: 100px;
   color: green;
   font-size: 20px;
   cursor: pointer;
-
 }
 #assigned {
-  display: inline ;
+  display: inline;
   width: 45%;
   border: solid 1px black;
   margin-right: 5%;
@@ -155,19 +154,55 @@ width: 100px;
   justify-content: space-between;
 }
 .contacts {
-  margin-top: 50px;
+
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.contact {
-  height: 40px;
+
+.linksToChat {
+  text-decoration: none;
+  color: black;
+}
+.linksToChat:hover {
+  text-decoration: none;
+  color: black;
+}
+.chats {
+  padding: 25px 0;
+  border-bottom: solid thin #b2b2b2;
+}
+.header {
+  position: fixed;
+  height: 60px;
   width: 100%;
+  background-color: #6389a8;
+}
+.drawer-nav> ul {
+  height: 60px;
+  background: #6389a8;
+  transition: background-color 1000ms linear;
+}
+.indexWrap {
+  margin-top: 60px;
+}
+.adminWrap {
+  margin-top: 60px;
+}
+.contactsWrap {
+  margin-top: 60px;
+}
+.contact {
 
 }
+.contactHref {
+  width: 100%;
+  padding: 25px 0;
+  border-bottom: solid thin #b2b2b2;
+}
+.drawer--left .drawer-nav {
 
-button,
-button:active,
-button:focus {
-    outline: none;
+}
+button, button:active, button:focus {
+  outline: none;
 }

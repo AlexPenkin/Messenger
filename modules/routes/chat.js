@@ -5,7 +5,7 @@ var recipient;
 var selfName;
 var rec;
 var chatName
-var rand = (Math.random() * 100000000000000000 + '');
+
 var obj = {
   sender: '',
   recipient: '',
@@ -16,6 +16,7 @@ module.exports = obj;
 var socketPrivateChat = require(__dirname + '/../privateMessage.js');
 app.app.route('/startChat/:username')
   .get(function(req, res, next) {
+    var rand = (Math.random() * 100000000000000000 + '');
     selfName = req.user.username;
     obj.recipient = req.params.username;
     obj.sender = req.user.username;
@@ -23,7 +24,6 @@ app.app.route('/startChat/:username')
     recipient = req.params.username;
     chatName = ( req.params.username > req.user.username) ? req.params.username + req.user.username : req.user.username + req.params.username;
     obj.chatName = chatName;
-    console.log(obj);
     let userObj = {
       user: req.user,
       recipient: recipient,
@@ -48,24 +48,7 @@ app.app.route('/startChat/:username')
       });
     };
 
-    function loadComments () {
-      return new Promise((resolve, reject) =>{
-        User.find({username: selfName}, {
-          'conversations.$.chatName' : chatName
-        }), function (err,pers) {
-          if (err) {
-            reject(err);
-            console.log(err);
-          } else {
-            console.log(pers);
-            resolve(pers);
-          }
-        }
-      });
-    }
-
     function findRecipient() {
-
       return new Promise((resolve, reject) => {
         User.findOne({
           username: recipient
@@ -142,12 +125,6 @@ app.app.route('/startChat/:username')
       .catch(err => {
         console.log('Fatal Error' + err)
       });
-
-
-
-
-
-
 
     //let chat = User.conversations.findOne({participant : req.params.username}) || undefined;
   });

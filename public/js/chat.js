@@ -6,7 +6,7 @@ var online = document.getElementById('onlineUsers');
 
 
 
-send.addEventListener("click", function(event) {  
+send.addEventListener("click", function(event) {
   if (input.value != '') {
     socket.emit('sendOnServer', {
       message: input.value,

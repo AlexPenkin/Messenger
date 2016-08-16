@@ -5,6 +5,13 @@ var buttonSend,
   message;
 
 document.addEventListener("DOMContentLoaded", ready);
+document.onkeyup = function (e) {
+	e = e || window.event;
+	if (e.keyCode === 13) {
+	 buttonSend.click();
+	}
+	return false;
+}
 
 function ready() {
   buttonSend = document.getElementById('sendBut');

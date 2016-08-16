@@ -9,6 +9,8 @@ const pug = require('pug');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const fs = require('fs');
+const gm = require('gm');
+const mkdirp = require('mkdirp');
 var passport = require(__dirname + '/modules/passport.js')
 
 
@@ -17,6 +19,7 @@ var d = new Date();
 server.listen('7777', () => console.log(`App worked on port 7777 ${d.toLocaleString()}`));
 const io = require('socket.io')(server);
 module.exports.io = io;
+module.exports.mkdirp = mkdirp;
 
 app.set('view engine', 'pug');
 app.set('views', views);

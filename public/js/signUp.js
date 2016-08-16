@@ -5,6 +5,14 @@ var buttonSend,
   email,
   message;
 
+  document.onkeyup = function (e) {
+  	e = e || window.event;
+  	if (e.keyCode === 13) {
+  	 buttonSend.click();
+  	}
+  	return false;
+  }
+
 document.addEventListener("DOMContentLoaded", ready);
 
 function ready() {
@@ -13,7 +21,7 @@ function ready() {
   password = document.getElementById('password');
   email = document.getElementById('email');
   message = document.getElementById('message');
-  buttonSend.addEventListener("click", function() {
+  buttonSend.addEventListener("click touchstart", function() {
     signUp('/signUp').then(res => {
       message.innerHTML = res;
       setTimeout(function() {
@@ -41,7 +49,7 @@ function signUp(url) {
       } else {
         var error = new Error(this.statusText);
         error.code = this.status;
-        reject(error);        
+        reject(error);
       }
     };
     xhr.onerror = function() {

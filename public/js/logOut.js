@@ -29,7 +29,7 @@ function logOut(url) {
     };
 
     xhr.onerror = function(err) {
-      reject(new Error("Network Error"));
+      reject(err);
     };
 
 
