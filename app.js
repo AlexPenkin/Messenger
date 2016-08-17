@@ -20,6 +20,7 @@ server.listen('7777', () => console.log(`App worked on port 7777 ${d.toLocaleStr
 const io = require('socket.io')(server);
 module.exports.io = io;
 module.exports.mkdirp = mkdirp;
+module.exports.gm = gm;
 
 app.set('view engine', 'pug');
 app.set('views', views);
