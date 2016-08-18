@@ -1,10 +1,12 @@
 block header
 div.header
+  div#moveBack
 div.headerWrap.drawer.drawer--left
   header(role="banner")
     button(type="button").drawer-toggle.drawer-hamburger
       span.sr-only toggle navigation
       span.drawer-hamburger-icon
+
   nav(role="navigation").drawer-nav
     ul
       li #{user.username}
@@ -39,3 +41,4 @@ script.
       });
   });
 script(type='text/javascript', src='/js/logOut.js')
+script(type='text/javascript', src='/js/moveBack.js')

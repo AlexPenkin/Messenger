@@ -203,6 +203,16 @@ body, html {
 .drawer--left .drawer-nav {
 
 }
+#moveBack {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 115px;
+  top: 21px;
+  background: url(../img/last-track-left-arrow.png);
+  background-size: contain;
+}
+}
 button, button:active, button:focus {
   outline: none;
 }
