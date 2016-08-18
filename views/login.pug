@@ -3,8 +3,9 @@ include ./includes/main.pug
 script(type='text/javascript', src='./js/login.js')
 div.logQuadWrap
   div.logQuad.col-lg-2.col-md-2.col-sm-12.col-xs-12.col-md-offset-5.col-lg-offset-5
+    img(src="data:image/png;base64," + uri)
     p Войти
-    form(name= 'login') 
+    form(name= 'login')
       input(type ='input' placeholder = "Логин или почта" name= 'username').form-control#username
       input(type ='password' placeholder = "Пароль" name= 'password').form-control#password
       a(href = '/signUp')#Reg Зарегистрироваться
