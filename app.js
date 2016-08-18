@@ -21,6 +21,7 @@ const io = require('socket.io')(server);
 module.exports.io = io;
 module.exports.mkdirp = mkdirp;
 module.exports.gm = gm;
+module.exports.fs = fs;
 
 app.set('view engine', 'pug');
 app.set('views', views);
