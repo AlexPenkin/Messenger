@@ -12,6 +12,8 @@ const fs = require('fs');
 const gm = require('gm');
 const mkdirp = require('mkdirp');
 var passport = require(__dirname + '/modules/passport.js')
+module.exports.Busboy = Busboy = require('busboy');
+
 
 
 var d = new Date();
@@ -34,14 +36,17 @@ app.use(bodyParser.urlencoded({
   extended: true,
   parameterLimit: 50000
 }));
-app.use(session({   secret: 'keyboard cat',
-    saveUninitialized: true,
-    resave: true,
-    cookie: {
-      maxAge: 60480000
-    }}));
+app.use(session({
+  secret: 'keyboard cat',
+  saveUninitialized: true,
+  resave: true,
+  cookie: {
+    maxAge: 60480000
+  }
+}));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 
 // Routes
@@ -55,10 +60,11 @@ var defineUser = require(__dirname + '/modules/routes/defineUser.js');
 var moderation = require(__dirname + '/modules/routes/moderation.js');
 var searchUser = require(__dirname + '/modules/routes/searchUser.js');
 var userPage = require(__dirname + '/modules/routes/userPage.js');
-var assignUser= require(__dirname + '/modules/routes/assignUser.js');
-var unassignUser= require(__dirname + '/modules/routes/unassignUser.js');
-var contacts= require(__dirname + '/modules/routes/contacts.js');
+var assignUser = require(__dirname + '/modules/routes/assignUser.js');
+var unassignUser = require(__dirname + '/modules/routes/unassignUser.js');
+var contacts = require(__dirname + '/modules/routes/contacts.js');
 var chat = require(__dirname + '/modules/routes/chat.js');
+var chat = require(__dirname + '/modules/routes/upload.js');
 
 app.get("/:page?", function(req, res) {
   var page = req.params.page;

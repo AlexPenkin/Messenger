@@ -212,6 +212,17 @@ body, html {
   background: url(../img/last-track-left-arrow.png);
   background-size: contain;
 }
+.avatar {
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+  background: black;
+}
+.usAva {
+  height: 100px;
+  width: 100px;
+  
+}
 }
 button, button:active, button:focus {
   outline: none;

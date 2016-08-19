@@ -3,6 +3,11 @@ include ./includes/header.pug
 block userPage
   div.userSWrap.col-lg-6.col-md-6.col-sm-12.col-xs-12.col-md-offset-3.col-lg-offset-3
     p#login Логин: #{searchUser.username}
+    if searchUser.avatar
+      img.usAva(src="data:image/png;base64," + searchUser.avatar)
+    form(name = 'uploadAva' enctype="multipart/form-data")
+      input(type='file' name='fileUploaded')
+      input(type='submit' value = 'Загрузить аватар')
     p Почта: #{searchUser.email}
     p Уровень полномочий: #{searchUser.role}
     a(href = '/startChat/' + searchUser.username) Написать
@@ -23,3 +28,4 @@ script.
   var USER = '#{searchUser.username}';
 
 script(type='text/javascript', src= '/js/assignUser.js')
+script(type='text/javascript', src= '/js/upload.js')

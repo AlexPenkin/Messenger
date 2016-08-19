@@ -6,4 +6,5 @@ block contacts
       each contact in user.contacts
         a.contactHref(href ='/user/' + contact)
           div.contact
+            img.avatar(src="data:image/png;base64," + contact.avatar)
             span #{contact}

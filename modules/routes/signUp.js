@@ -8,6 +8,7 @@ function randomInteger(min, max) {
   rand = Math.round(rand);
   return rand;
 }
+
 var img = {};
 
 
@@ -29,7 +30,30 @@ app.app.route('/signUp')
       .then(res => resizeAvatar())
       .then(res => saveUser())
       //.then(res => deleteAvatar())
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err);
+        var newUser = new User({
+          username: req.body.username,
+          usernameLow: req.body.username.toLowerCase(),
+          password: crypt(req.body.password),
+          email: req.body.email,
+          
+        });
+        //console.log('AAAAAAAAAAAAATTTTTTTTTTTT' + img.uri);
+        newUser.save(function(err) {
+          if (err) {
+            console.log(err);
+            res.status(300).send('Ошибка сохранения в базу данных');
+
+          } else {
+
+            if (err) console.error(err)
+            else console.log(`Saved!`);
+          }
+        });
+
+
+      })
 
 
     function saveUser() {
@@ -61,7 +85,7 @@ app.app.route('/signUp')
 
           return data
         })
-        var uri = img.uril
+
         console.log('THIS IS SHOULD WORK!!!' + aa);
 
       });
