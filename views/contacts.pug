@@ -3,8 +3,8 @@ include ./includes/header.pug
 block contacts
   div.contactsWrap.col-lg-6.col-md-6.col-sm-12.col-xs-12.col-md-offset-3.col-lg-offset-3
     div.contacts
-      each contact in contactsO
-        a.contactHref(href ='/user/' + contact)
+      each contact in contactss
+        a.contactHref(href ='/user/' + contact.name)
           div.contact
             img.avatar(src="data:image/png;base64," + contact.avatar)
-            span #{contact}
+            span #{contact.name}

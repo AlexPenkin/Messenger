@@ -23,7 +23,6 @@ app.app.route('/uploadAva')
         User.update({username: req.headers.user}, {$set :{avatar: data.toString('base64')}}, function (err, n) {
           if (err) {
             console.log(err);
-
           } else {
             console.log(n);
           }

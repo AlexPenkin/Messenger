@@ -26,6 +26,7 @@ function upload(file) {
   xhr.onload = xhr.onerror = function() {
     if (this.status == 200) {
       console.log("success");
+      location.reload();
     } else {
       console.log("error " + this.status);
     }

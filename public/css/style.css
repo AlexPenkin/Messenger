@@ -45,6 +45,7 @@ body, html {
   margin: 15px 0;
 }
 .awesomeBut {
+  display: inline-block;
   background-color: transparent;
   border-radius: 5px;
   border: solid thin #7cde9c;
@@ -221,7 +222,7 @@ body, html {
 .usAva {
   height: 100px;
   width: 100px;
-  
+
 }
 }
 button, button:active, button:focus {
