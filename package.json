@@ -15,11 +15,11 @@
     "express-session": "^1.14.0",
     "gm": "^1.23.0",
     "mkdirp": "^0.5.1",
-    "mongoose": "^4.5.7",
+    "mongoose": "^4.5.9",
     "multer": "^1.2.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "pug": "^2.0.0-beta4",
+    "pug": "^2.0.0-beta5",
     "socket.io": "^1.4.8"
   }
 }
