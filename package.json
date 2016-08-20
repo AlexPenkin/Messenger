@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "babel public/js_es6 -d public/js --presets es2015"
+    "build": "babel public/js_es6 -d public/js --presets es2015",
     "watch": "babel public/js -d public/lib --presets es2015 -w"	
   },
   "author": "Alexander Penkin",

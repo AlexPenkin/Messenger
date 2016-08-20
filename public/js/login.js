@@ -15,15 +15,13 @@ try {
       for (var i = 0; i < events.length; i += 1) {
         element.addEventListener(events[i], handlerFn, useCapture);
         console.log(events[i]);
-        alert(events[i]);
       }
     };
 
     var handler = function handler(e) {
-      alert('click');
       login('/login').then(function (response) {
         return setTimeout(function () {
-          console.log('there');
+
           window.location.replace("/");
         } /*2000*/);
       }).catch(function (error) {
@@ -76,7 +74,6 @@ try {
       });
     };
 
-    alert("ipad");
     //document.addEventListener("DOMContentLoaded", ready);
     document.onkeyup = function (e) {
       e = e || window.event;
