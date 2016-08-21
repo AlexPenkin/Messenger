@@ -19,7 +19,7 @@ app.app.route('/uploadAva')
       var img = '';
       stream.on('data', function(chunk){
         console.log(chunk);
-        img += chunk.toString('base64');
+        img += chunk;
       })
       stream.on('end', function(){
         User.update({
