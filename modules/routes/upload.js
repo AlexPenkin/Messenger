@@ -12,7 +12,8 @@ app.app.route('/uploadAva')
     (function() {
       req.pipe(app.fs.createWriteStream(saveTo))
       req.on('end', function() {
-        res.end('ok');
+        console.log('end');
+      
       });
 
     })();

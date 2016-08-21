@@ -43,7 +43,7 @@ function findContacts() {
       User.findOne({username: req.user.contacts[i]}, function(err, pers) {
         if (err) {
           console.log(err);
-          throw new Error('Контакты скорее всего пусты');
+          throw new Error('Контакты скорее всего пусты + 1');
           reject(err)
         } else if (i == (req.user.contacts.length - 1)) {
           console.log(pers);
@@ -57,7 +57,7 @@ function findContacts() {
         }
           else {
             obj[pers.username] = pers.avatar
-            res.end();
+            //res.end();
           console.log('work');
           console.log(2);
 
@@ -65,7 +65,7 @@ function findContacts() {
       })
     }
   } else {
-    throw new Error('Контакты скорее всего пусты');
+    throw new Error('Контакты скорее всего пусты + 1');
     reject(err)
   }
 
