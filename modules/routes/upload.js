@@ -32,6 +32,7 @@ app.app.route('/uploadAva')
           if (err) {
             console.log(err);
           } else {
+            res.end('ok');
             console.log(n);
           }
         })

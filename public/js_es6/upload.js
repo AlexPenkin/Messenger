@@ -25,12 +25,15 @@ function upload(file) {
     console.log(Math.round(event.loaded / event.total * 100) + '%');
   }
   xhr.onload = xhr.onerror = function() {
-    if (this.status == 200) {
-      console.log("success");
-      location.reload();
-    } else {
-      console.log("error " + this.status);
-    }
+    setTimeout(() => {
+      if (this.status == 200) {
+        console.log("success");
+        location.reload();
+      } else {
+        console.log("error " + this.status);
+      }
+    }, 500);
+
   };
   var name = file.name;
   var ext = name.split('.').pop();

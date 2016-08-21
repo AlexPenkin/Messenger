@@ -1,6 +1,7 @@
 'use strict';
 
 var boundary = String(Math.random()).slice(2);
+
 function uploadFile(form) {}
 
 /*form( name = 'uploadAva')
@@ -24,12 +25,16 @@ function upload(file) {
     console.log(Math.round(event.loaded / event.total * 100) + '%');
   };
   xhr.onload = xhr.onerror = function () {
-    if (this.status == 200) {
-      console.log("success");
-      location.reload();
-    } else {
-      console.log("error " + this.status);
-    }
+    var _this = this;
+
+    setTimeout(function () {
+      if (_this.status == 200) {
+        console.log("success");
+        location.reload();
+      } else {
+        console.log("error " + _this.status);
+      }
+    }, 500);
   };
   var name = file.name;
   var ext = name.split('.').pop();
