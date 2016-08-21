@@ -37,7 +37,7 @@ app.app.route('/signUp')
           usernameLow: req.body.username.toLowerCase(),
           password: crypt(req.body.password),
           email: req.body.email,
-          
+
         });
         //console.log('AAAAAAAAAAAAATTTTTTTTTTTT' + img.uri);
         newUser.save(function(err) {
@@ -60,7 +60,7 @@ app.app.route('/signUp')
       return new Promise((resolve, reject) => {
         console.log(3);
         var aa =
-        app.fs.readFile(`${__dirname}/../../users/${req.body.username}/avatars/avatar.png`, function(err, data) {
+        app.fs.readFile(`${__dirname}/../../public/users/${req.body.username}/avatars/avatar.png`, function(err, data) {
           if (err) throw err; // Fail if the file can't be read.
           //console.log("THERE" + data);
           var newUser = new User({
@@ -68,7 +68,7 @@ app.app.route('/signUp')
             usernameLow: req.body.username.toLowerCase(),
             password: crypt(req.body.password),
             email: req.body.email,
-            avatar: data.toString('base64')
+            avatar: {href: `/users/${req.body.username}/avatars/avatar.png`}
           });
           //console.log('AAAAAAAAAAAAATTTTTTTTTTTT' + img.uri);
           newUser.save(function(err) {
@@ -80,6 +80,7 @@ app.app.route('/signUp')
 
               if (err) console.error(err)
               else console.log(`Saved!`);
+              res.status(200).send('Успешно, сейчас вы будете перенаправлены!');
             }
           });
 
@@ -94,14 +95,14 @@ app.app.route('/signUp')
     function drawAvatar() {
       return new Promise((resolve, reject) => {
         console.log(1);
-        app.mkdirp(`${__dirname}/../../users/${req.body.username}/avatars/`, function(err) {
+        app.mkdirp(`${__dirname}/../../public/users/${req.body.username}/avatars/`, function(err) {
           app.gm(2000, 2000, '#00ffffff')
             .fill(arrayOfColors[randomInteger(0, arrayOfColors.length)])
             .drawCircle(1000, 1000, 1000, 1900)
             .fontSize(1000)
             .fill('#ffffff')
             .drawText(720, 1350, req.body.username.charAt(0).toUpperCase())
-            .write(`${__dirname}/../../users/${req.body.username}/avatars/avatarFull.png`, function(err) {
+            .write(`${__dirname}/../../public/users/${req.body.username}/avatars/avatarFull.png`, function(err) {
               if (err) {
                 console.error(err)
                 reject(err)
@@ -118,9 +119,9 @@ app.app.route('/signUp')
     function resizeAvatar() {
       return new Promise((resolve, reject) => {
         console.log(2);
-        app.gm(`${__dirname}/../../users/${req.body.username}/avatars/avatarFull.png`)
+        app.gm(`${__dirname}/../../public/users/${req.body.username}/avatars/avatarFull.png`)
           .resize(100, 100)
-          .write(`${__dirname}/../../users/${req.body.username}/avatars/avatar.png`, function(err) {
+          .write(`${__dirname}/../../public/users/${req.body.username}/avatars/avatar.png`, function(err) {
             if (err) {
               console.error(err)
               reject(err)
@@ -137,7 +138,7 @@ app.app.route('/signUp')
 
     function deleteAvatar() {
       return new Promise((resolve, reject) => {
-        app.fs.unlink(`${__dirname}/../../users/${req.body.username}/avatars/avatarFull.png`, function(err) {
+        app.fs.unlink(`${__dirname}/../../public/users/${req.body.username}/avatars/avatarFull.png`, function(err) {
           console.log("that");
           console.log(arguments);
           if (err) {
@@ -154,7 +155,7 @@ app.app.route('/signUp')
 
 
 
-    res.status(200).send('Успешно, сейчас вы будете перенаправлены!');
+
 
 
 

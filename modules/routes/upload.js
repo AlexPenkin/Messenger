@@ -7,31 +7,45 @@ const User = require(__dirname + '/../schemaes/User.js');
 
 app.app.route('/uploadAva')
   .post(function(req, res, next) {
-    var saveTo = `${__dirname}/../../users/${req.headers.user}/avatars/avatar.png`;
-    req.pipe(app.fs.createWriteStream(saveTo))
-    res.end('ok');
+    var saveTo = `${__dirname}/../../public/users/${req.headers.user}/avatars/${req.headers.filename}`;
 
-    //Resize image
-    app.gm(saveTo )
-    .resize(100, 100)
-    .write(saveTo , function (err) {
-  if (!err) console.log('done');
-});
+    (function() {
+      req.pipe(app.fs.createWriteStream(saveTo))
+      res.end('ok');
+    })();
 
-    app.fs.readFile(saveTo , function(err, data) {
-      if (err) {
-        console.log(err);
-      } else {
-        User.update({username: req.headers.user}, {$set :{avatar: data.toString('base64')}}, function (err, n) {
+    (function() {
+      var stream = app.fs.createReadStream(saveTo);
+      var img = '';
+      stream.on('data', function(chunk){
+        console.log(chunk);
+        img += chunk.toString('base64');
+      })
+      stream.on('end', function(){
+        User.update({
+          username: req.headers.user
+        }, {
+          $set: {
+            avatar: {href: `/users/${req.headers.user}/avatars/${req.headers.filename}`}
+          }
+        }, function(err, n) {
           if (err) {
             console.log(err);
           } else {
             console.log(n);
           }
         })
-      }
+      })
+
+    })();
 
 
+    //Resize image
+    /*app.gm(saveTo )
+    .resize(100, 100)
+    .write(saveTo , function (err) {
+  if (!err) console.log('done');
+});*/
 
-    })
+
   })

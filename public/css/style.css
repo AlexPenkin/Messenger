@@ -123,6 +123,7 @@ body, html {
 }
 .userSWrap {
   margin-top: 60px;
+  text-align: center;
 }
 .users {
   cursor: pointer;
@@ -153,6 +154,10 @@ body, html {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 35px;
+}
+.userSWrap > p {
+  text-align: left;
 }
 .contacts {
 
@@ -220,11 +225,10 @@ body, html {
   background: black;
 }
 .usAva {
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  max-width: 400px;
+}
 
-}
-}
 button, button:active, button:focus {
   outline: none;
 }

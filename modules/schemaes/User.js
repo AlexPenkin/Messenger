@@ -18,12 +18,16 @@ var Chats = new db.Schema({
 });
 
 var Rooms = new db.Schema({
-  name: String,
+  roomName: String,
+  PMID: String,
   messages: [{
     name: String,
     message: String,
-    date: Date
+    date: Date,
+    readed: Boolean
   }],
+  initializator: String,
+  admin: String,
   participants: [String],
   date: {
     type: Date,
@@ -47,7 +51,7 @@ var User = new db.Schema({
     type: Date,
     default: Date.now
   },
-  avatar: String,
+  avatar: db.Schema.Types.Mixed,
   contacts: [String],
   conversations: [Chats],
   rooms: [Rooms],

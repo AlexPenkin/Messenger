@@ -37,16 +37,19 @@ function findContacts() {
     //obj.user = req.user;
     obj.contactss = [];
     console.log(1);
+    if (req.user.contacts.length != 0){
     for (let i = 0; i < req.user.contacts.length; i++) {
       console.log('I: ' + i);
       User.findOne({username: req.user.contacts[i]}, function(err, pers) {
         if (err) {
           console.log(err);
+          throw new Error('Контакты скорее всего пусты');
           reject(err)
         } else if (i == (req.user.contacts.length - 1)) {
+          console.log(pers);
           obj.contactss.push({
             name : pers.username,
-            avatar : pers.avatar
+            avatar : pers.avatar.href || ''
            })
           console.log(3);
           console.log(obj);
@@ -60,6 +63,10 @@ function findContacts() {
         }
       })
     }
+  } else {
+    throw new Error('Контакты скорее всего пусты');
+    reject(err)
+  }
 
   })
 }
@@ -67,7 +74,10 @@ function findContacts() {
       findYourSelf()
       .then(resp => findContacts())
       .then(resp => res.render('contacts', resp))
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        res.render('contacts', {user: req.user})
+      });
 
     } else {
       res.redirect('/login');

@@ -1,5 +1,6 @@
 'use strict'
-  var boundary = String(Math.random()).slice(2);
+var boundary = String(Math.random()).slice(2);
+
 function uploadFile(form) {}
 
 /*form( name = 'uploadAva')
@@ -8,11 +9,11 @@ function uploadFile(form) {}
 */
 document.forms.uploadAva.onsubmit = function() {
   var input = this.elements.fileUploaded;
-      var file = input.files[0];
-      if (file) {
-        upload(file);
-      }
-      return false;
+  var file = input.files[0];
+  if (file) {
+    upload(file);
+  }
+  return false;
 }
 
 
@@ -22,7 +23,7 @@ function upload(file) {
 
   xhr.upload.onprogress = function(event) {
     console.log(Math.round(event.loaded / event.total * 100) + '%');
-    }
+  }
   xhr.onload = xhr.onerror = function() {
     if (this.status == 200) {
       console.log("success");
@@ -31,11 +32,13 @@ function upload(file) {
       console.log("error " + this.status);
     }
   };
-
+  var name = file.name;
+  var ext = name.split('.').pop();
+  console.log(ext);
   xhr.open("POST", "/uploadAva", true);
   xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
-  xhr.setRequestHeader('fileName', 'avatar.png');
-    xhr.setRequestHeader('user', USER);
+  xhr.setRequestHeader('fileName', 'avatar.' + ext);
+  xhr.setRequestHeader('user', USER);
   xhr.send(file);
 
 }

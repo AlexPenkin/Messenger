@@ -22,6 +22,13 @@ privateMessage.on('connection', function(socket) {
   });
 })
 
+privateMessage.on('disconnect', function (socket) {
+
+  sockets.splice(sockets.indexOf(socket.id), 1);
+
+    console.log('disconnect');
+  });
+
 function updateUsersWithChat(sender, recipient, pmid, message) {
   return new Promise((resolve, reject) => {
     User.update({
