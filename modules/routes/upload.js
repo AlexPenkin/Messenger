@@ -11,22 +11,26 @@ app.app.route('/uploadAva')
 
     (function() {
       req.pipe(app.fs.createWriteStream(saveTo))
-      res.end('ok');
+      req.on('end', function() {
+        res.end('ok');
+      });
+
     })();
 
     (function() {
       var stream = app.fs.createReadStream(saveTo);
       var img = '';
-      stream.on('data', function(chunk){
-        console.log(chunk);
+      stream.on('data', function(chunk) {
         img += chunk;
       })
-      stream.on('end', function(){
+      stream.on('end', function() {
         User.update({
           username: req.headers.user
         }, {
           $set: {
-            avatar: {href: `/users/${req.headers.user}/avatars/${req.headers.filename}`}
+            avatar: {
+              href: `/users/${req.headers.user}/avatars/${req.headers.filename}`
+            }
           }
         }, function(err, n) {
           if (err) {

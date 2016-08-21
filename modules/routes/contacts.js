@@ -57,6 +57,7 @@ function findContacts() {
         }
           else {
             obj[pers.username] = pers.avatar
+            res.end();
           console.log('work');
           console.log(2);
 
