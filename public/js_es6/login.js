@@ -18,7 +18,7 @@ try {
       }
     };
 
-    var handler = function handler(e) {      
+    var handler = function handler(e) {
       login('/login').then(function (response) {
         return setTimeout(function () {
 

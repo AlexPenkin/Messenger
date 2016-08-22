@@ -8,7 +8,6 @@ document.onkeyup = function(e) {
   e = e || window.event;
   if (e.keyCode === 13) {
     send.click();
-
   }
   return false;
 }

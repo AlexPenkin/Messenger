@@ -27,7 +27,7 @@ var Rooms = new db.Schema({
     readed: Boolean
   }],
   initializator: String,
-  admin: String,
+  admins: [String],
   participants: [String],
   date: {
     type: Date,

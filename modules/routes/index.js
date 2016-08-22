@@ -21,7 +21,8 @@ app.app.route('/')
         })
         res.render('index', {
           user: req.user,
-          chats: chats
+          chats: chats,
+          rooms: req.user.rooms
         });
       } else if (req.user.role == 'undefined') {
         res.redirect('/moderation')

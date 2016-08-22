@@ -65,6 +65,8 @@ var unassignUser = require(__dirname + '/modules/routes/unassignUser.js');
 var contacts = require(__dirname + '/modules/routes/contacts.js');
 var chat = require(__dirname + '/modules/routes/chat.js');
 var chat = require(__dirname + '/modules/routes/upload.js');
+var chat = require(__dirname + '/modules/routes/makeRoom.js');
+var chat = require(__dirname + '/modules/routes/groupMessage.js');
 
 app.get("/:page?", function(req, res) {
   var page = req.params.page;
