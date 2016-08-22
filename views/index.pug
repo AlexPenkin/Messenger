@@ -6,9 +6,10 @@ block index
       each item in chats
         a.linksToChat(href = 'startChat/' + item )
           div.chats #{item}
-      each item in rooms
-        a.linksToChat(href = '/startRoom/' + item.roomName )
-          div.chats #{item.roomName}
+      if rooms
+        each item in rooms
+          a.linksToChat(href = '/startRoom/' + item.roomName )
+            div.chats #{item.roomName}
 script(type='text/javascript', src= "https://cdn.socket.io/socket.io-1.4.5.js")
 script.
   var user = '#{user.username}';
