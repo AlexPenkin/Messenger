@@ -4,8 +4,6 @@ const User = require(__dirname + '/../schemaes/User.js');
 
 app.app.route('/contacts')
   .get(function(req, res, next) {
-
-
     function findYourSelf() {
       return new Promise((resolve, reject) => {
         User.findOne({
@@ -51,16 +49,15 @@ function findContacts() {
             name : pers.username,
             avatar : pers.avatar.href || ''
            })
-          console.log(3);
-          console.log(obj);
           resolve(obj);
         }
           else {
-            obj[pers.username] = pers.avatar
+            console.log(pers);
+            obj.contactss.push({
+              name : pers.username,
+              avatar : pers.avatar ? pers.avatar.href : ''
+             })
             //res.end();
-          console.log('work');
-          console.log(2);
-
         }
       })
     }
