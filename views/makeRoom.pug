@@ -1,0 +1,14 @@
+include ./includes/main.pug
+include ./includes/header.pug
+block makeRoom
+  div.makeRoomWrap.col-lg-6.col-md-6.col-sm-12.col-xs-12.col-md-offset-3.col-lg-offset-3
+    div.makeRoom
+      div#contacts Добавьте юзеров
+        each item in user.contacts
+          p.userRoom #{item}
+      input#nameRoom(type = 'text' placeholder = 'Name of chat')      
+      p Админы:
+          p#adm #{user.username}
+      button.awesomeBut#makeRoom Создать чат
+
+script(type='text/javascript', src='/js/makeRoom.js')

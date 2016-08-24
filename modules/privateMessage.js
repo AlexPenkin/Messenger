@@ -6,6 +6,7 @@ var privateMessage = app.io.of('/privateMessage');
 var users = {};
 var sockets = {};
 
+
 privateMessage.on('connection', function(socket) {
   sockets[socket.id] = {
     PMID: pm.PMID,

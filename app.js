@@ -18,7 +18,7 @@ module.exports.Busboy = Busboy = require('busboy');
 
 var d = new Date();
 
-server.listen('7777', () => console.log(`App worked on port 7777 ${d.toLocaleString()}`));
+server.listen('7779', () => console.log(`App worked on port 7777 ${d.toLocaleString()}`));
 const io = require('socket.io')(server);
 module.exports.io = io;
 module.exports.mkdirp = mkdirp;
@@ -65,6 +65,8 @@ var unassignUser = require(__dirname + '/modules/routes/unassignUser.js');
 var contacts = require(__dirname + '/modules/routes/contacts.js');
 var chat = require(__dirname + '/modules/routes/chat.js');
 var chat = require(__dirname + '/modules/routes/upload.js');
+var chat = require(__dirname + '/modules/routes/makeRoom.js');
+var chat = require(__dirname + '/modules/routes/groupMessage.js');
 
 app.get("/:page?", function(req, res) {
   var page = req.params.page;

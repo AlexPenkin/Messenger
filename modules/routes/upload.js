@@ -10,12 +10,15 @@ app.app.route('/uploadAva')
     var saveTo = `${__dirname}/../../public/users/${req.headers.user}/avatars/${req.headers.filename}`;
 
     (function() {
-      req.pipe(app.fs.createWriteStream(saveTo))
-      req.on('end', function() {
-        console.log('end');
-      
-      });
-
+      try {
+        req.pipe(app.fs.createWriteStream(saveTo))
+        req.on('end', function() {
+          console.log('end');
+        });
+      } catch (e) {
+        console.log("EEERRRRROR!!");
+        console.log(err);
+      }
     })();
 
     (function() {
@@ -48,10 +51,10 @@ app.app.route('/uploadAva')
 
     //Resize image
     /*app.gm(saveTo )
-    .resize(100, 100)
-    .write(saveTo , function (err) {
-  if (!err) console.log('done');
-});*/
+        .resize(100, 100)
+        .write(saveTo , function (err) {
+      if (!err) console.log('done');
+    });*/
 
 
   })

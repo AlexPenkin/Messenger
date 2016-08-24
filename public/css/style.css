@@ -228,6 +228,9 @@ body, html {
   height: 150px;
   max-width: 400px;
 }
+.makeRoomWrap {
+  margin-top: 65px;
+}
 
 button, button:active, button:focus {
   outline: none;
