@@ -231,6 +231,17 @@ body, html {
 .makeRoomWrap {
   margin-top: 65px;
 }
+#notification {
+  border-radius: 50px;
+  background: red;
+  height: 40px;
+  width: 40px;
+  left: 180px;
+  top: 11px;
+  position: absolute;
+  display: none;
+  transition: all 0.5s;
+}
 
 button, button:active, button:focus {
   outline: none;

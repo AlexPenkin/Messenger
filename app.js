@@ -11,6 +11,8 @@ const session = require('express-session');
 const fs = require('fs');
 const gm = require('gm');
 const mkdirp = require('mkdirp');
+const EventEmitter = require('events');
+const notificationEmitter = new EventEmitter();
 var passport = require(__dirname + '/modules/passport.js')
 module.exports.Busboy = Busboy = require('busboy');
 
@@ -18,12 +20,13 @@ module.exports.Busboy = Busboy = require('busboy');
 
 var d = new Date();
 
-server.listen('7779', () => console.log(`App worked on port 7777 ${d.toLocaleString()}`));
+server.listen('7777', () => console.log(`App worked on port 7777 ${d.toLocaleString()}`));
 const io = require('socket.io')(server);
 module.exports.io = io;
 module.exports.mkdirp = mkdirp;
 module.exports.gm = gm;
 module.exports.fs = fs;
+module.exports.notificationEmitter = notificationEmitter;
 
 app.set('view engine', 'pug');
 app.set('views', views);

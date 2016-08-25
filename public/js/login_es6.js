@@ -76,7 +76,7 @@ try {
       });
     };
 
-    alert("ipad");
+  
     //document.addEventListener("DOMContentLoaded", ready);
     document.onkeyup = function (e) {
       e = e || window.event;
@@ -88,10 +88,10 @@ try {
 
     ;
 
-    // usage
 
 
-    //function ready() {
+
+
     buttonSend = document.getElementById('sendBut');
     username = document.getElementById('username');
     password = document.getElementById('password');

@@ -71,6 +71,8 @@ app.app.route('/startChat/:username')
           console.log('chat not exist');
           obj.PMID = rand;
           user.conversations.push({
+            initializator : req.user.username,
+            participant : req.params.username,
             chatName : chatName,
             PMID: rand
           });
@@ -87,6 +89,8 @@ app.app.route('/startChat/:username')
               return;
             } else if ((user.conversations[i].chatName != chatName) && (i == (user.conversations.length - 1))) {
               user.conversations.push({
+                initializator : req.user.username,
+                participant : req.params.username,
                 chatName : chatName,
                 PMID: rand
               });
@@ -102,6 +106,8 @@ app.app.route('/startChat/:username')
         console.log('chat not exist');
         obj.PMID = rand;
         user.conversations.push({
+          initializator : req.user.username,
+          participant : req.params.username,
           chatName : chatName,
           PMID: rand
         });

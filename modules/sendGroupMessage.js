@@ -6,20 +6,27 @@ var groupMessage = app.io.of('/groupMessage');
 var users = {};
 var sockets = {};
 
+
+
+
+
 groupMessage.on('connection', function(socket) {
+  console.log(groupInfo);
   sockets[groupInfo.PMIDGr] = {
     PMID: groupInfo.PMIDGr,
     sockets: [],
 
   };
-  console.log(sockets);
-  console.log(groupInfo.sender);
-  console.log('id: ' + groupInfo.PMIDGr);
   sockets[groupInfo.PMIDGr].sockets.push(socket.id);
   socket.join(sockets[groupInfo.PMIDGr].PMID + '');
   socket.on('sendOnServer', function(data) {
-    console.log('AAAAAAAAAA');
+    console.log(groupInfo);
+
     updateRoomsBd (sockets[groupInfo.PMIDGr].PMID ,data.user, data.message);
+    app.notificationEmitter.emit('messageNotification', `${data.user}`, `${data.message}, ${groupInfo.participants}`);
+    //console.log(sseSetup);
+    //groupInfo.sseSetup();
+    //groupInfo.sseSend(`Прислал сообщение: ${groupInfo.sender}`)
     groupMessage.to(sockets[groupInfo.PMIDGr].PMID + '').emit('serverRes', `${data.user} : ${data.message}`);
     //updateRoomsBd (sockets[groupInfo.PMIDGr].PMID ,${data.user}, ${data.message});
     /*updateUsersWithChat(sockets[socket.id].sender, sockets[socket.id].recipient, sockets[socket.id].PMID, data.message)
@@ -59,6 +66,7 @@ groupMessage.on('disconnect', function (socket) {
       if (err) {
         throw new Error(err);
       }
+
       console.log('YEAH!' + num);
     })
   }

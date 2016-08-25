@@ -47,7 +47,7 @@ function findContacts() {
           console.log(pers);
           obj.contactss.push({
             name : pers.username,
-            avatar : pers.avatar.href || ''
+            avatar : pers.avatar ? pers.avatar.href : ''
            })
           resolve(obj);
         }
