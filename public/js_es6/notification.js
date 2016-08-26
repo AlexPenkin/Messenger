@@ -19,6 +19,7 @@ class Notification {
     this.quanity = sessionStorage.getItem('quanity') || 0;
     this.notificator = document.createElement('div');
     this.notificator.id = 'notification';
+    this.audio = new Audio('/notification.wav');
     this.header = document.getElementById('header');
     this.header.appendChild(this.notificator);
     var self = this;
@@ -43,6 +44,14 @@ class Notification {
     sessionStorage.setItem('quanity', this.quanity);
   }
 
+  makeSound() {
+    this.audio.play();
+  }
+  stopSound() {
+    this.audio.pause();
+    this.audio.currentTime = 0;
+  }
+
 }
 var not = new Notification;
 not.showNotification();
@@ -56,6 +65,8 @@ source.addEventListener('message', function(e) {
   if (data1.parts.contains(USER)) {
     console.log(`${data1.sender} отправил вам сообщение: ${data1.msg}`);
     not.quanity++;
+    not.stopSound();
+    not.makeSound();
     not.showNotification();
     sessionStorage.setItem('quanity', not.quanity);
   }

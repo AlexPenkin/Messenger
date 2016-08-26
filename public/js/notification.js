@@ -25,6 +25,7 @@ var Notification = function () {
     this.quanity = sessionStorage.getItem('quanity') || 0;
     this.notificator = document.createElement('div');
     this.notificator.id = 'notification';
+    this.audio = new Audio('/notification.wav');
     this.header = document.getElementById('header');
     this.header.appendChild(this.notificator);
     var self = this;
@@ -51,6 +52,17 @@ var Notification = function () {
       this.notificator.style.display = 'none';
       sessionStorage.setItem('quanity', this.quanity);
     }
+  }, {
+    key: 'makeSound',
+    value: function makeSound() {
+      this.audio.play();
+    }
+  }, {
+    key: 'stopSound',
+    value: function stopSound() {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+    }
   }]);
 
   return Notification;
@@ -68,6 +80,8 @@ source.addEventListener('message', function (e) {
   if (data1.parts.contains(USER)) {
     console.log(data1.sender + ' отправил вам сообщение: ' + data1.msg);
     not.quanity++;
+    not.stopSound();
+    not.makeSound();
     not.showNotification();
     sessionStorage.setItem('quanity', not.quanity);
   }
