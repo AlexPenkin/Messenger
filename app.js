@@ -11,6 +11,8 @@ const session = require('express-session');
 const fs = require('fs');
 const gm = require('gm');
 const mkdirp = require('mkdirp');
+const EventEmitter = require('events');
+const notificationEmitter = new EventEmitter();
 var passport = require(__dirname + '/modules/passport.js')
 module.exports.Busboy = Busboy = require('busboy');
 
@@ -24,6 +26,7 @@ module.exports.io = io;
 module.exports.mkdirp = mkdirp;
 module.exports.gm = gm;
 module.exports.fs = fs;
+module.exports.notificationEmitter = notificationEmitter;
 
 app.set('view engine', 'pug');
 app.set('views', views);
@@ -67,6 +70,7 @@ var chat = require(__dirname + '/modules/routes/chat.js');
 var chat = require(__dirname + '/modules/routes/upload.js');
 var chat = require(__dirname + '/modules/routes/makeRoom.js');
 var chat = require(__dirname + '/modules/routes/groupMessage.js');
+var chat = require(__dirname + '/modules/routes/notification.js');
 
 app.get("/:page?", function(req, res) {
   var page = req.params.page;

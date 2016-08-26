@@ -1,6 +1,7 @@
 block header
-div.header
+div.header#header
   div#moveBack
+  
 div.headerWrap.drawer.drawer--left
   header(role="banner")
     button(type="button").drawer-toggle.drawer-hamburger
@@ -40,5 +41,7 @@ script.
       showOverlay: true
       });
   });
+  var USER = '#{user.username}'
 script(type='text/javascript', src='/js/logOut.js')
+script(type='text/javascript', src='/js/notification.js')
 script(type='text/javascript', src='/js/moveBack.js')

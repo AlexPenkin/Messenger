@@ -39,7 +39,7 @@ function upload(file) {
   var ext = name.split('.').pop();
   console.log(ext);
   xhr.open("POST", "/uploadAva", true);
-  xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
+  //xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
   xhr.setRequestHeader('fileName', 'avatar.' + ext);
   xhr.setRequestHeader('user', USER);
   xhr.send(file);

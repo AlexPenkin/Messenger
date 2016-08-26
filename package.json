@@ -5,13 +5,14 @@
   "main": "app.js",
   "scripts": {
     "build": "babel public/js_es6 -d public/js --presets es2015",
-    "watch": "babel public/js -d public/lib --presets es2015 -w"
+    "watch": "babel public/js_es6 -d public/js --presets es2015 -w"
   },
   "author": "Alexander Penkin",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
     "busboy": "^0.2.13",
+    "easysse": "^0.9.0",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
     "gm": "^1.23.0",

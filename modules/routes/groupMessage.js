@@ -2,11 +2,8 @@
 var app = require(__dirname + '/../../app.js');
 const User = require(__dirname + '/../schemaes/User.js');
 var groupInfo = {};
-
-
-
 app.app.route('/startRoom/:roomName')
-  .get(function(req, res, next) {
+  .get(function(req, res) {
     var params = req.params.roomName;
     var messages;
     console.log('param: ' + req.params.roomName);
@@ -16,16 +13,21 @@ app.app.route('/startRoom/:roomName')
       res.redirect('/');
     } else {
 
-      User.findOne({rooms: { $elemMatch: {roomName: req.params.roomName }}}, function(err, pers) {
+      User.findOne({
+        rooms: {
+          $elemMatch: {
+            roomName: req.params.roomName
+          }
+        }
+      }, function(err, pers) {
         if (err) {
           console.log(err);
         } else {
           for (var i = 0; i < pers.rooms.length; i++) {
-            if (pers.rooms[i].roomName == params ) {
-              console.log(pers.rooms[i].roomName );
+            if (pers.rooms[i].roomName == params) {
               groupInfo.PMIDGr = pers.rooms[i].PMID;
               groupInfo.sender = req.user.username;
-              console.log(pers.rooms[i].messages);
+              groupInfo.participants = pers.rooms[i].participants;
               messages = pers.rooms[i].messages;
               res.render('groupMessagePage', {
                 user: req.user,
@@ -35,14 +37,15 @@ app.app.route('/startRoom/:roomName')
 
             }
           }
-      }})
+        }
+      })
 
       var gc = require(__dirname + '/../sendGroupMessage.js');
       console.log(messages);
 
     }
   })
-  .post(function(req, res, next) {
+  .post(function(req, res) {
 
 
   })

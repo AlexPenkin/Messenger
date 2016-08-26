@@ -3,11 +3,12 @@ include ./includes/header.pug
 block index
   div.indexWrap.col-lg-6.col-md-6.col-sm-12.col-xs-12.col-md-offset-3.col-lg-offset-3
     div.index.col-lg-12.col-md-12.col-sm-12.col-xs-12#chatUserMessages
-      each item in chats
-        a.linksToChat(href = 'startChat/' + item )
-          div.chats #{item}
-      if rooms
-        each item in rooms
+      if user.conversations
+        each item in user.conversations
+          a.linksToChat(href = 'startChat/' + (item.initializator == user.username ? item.participant : item.initializator) )          
+            div.chats #{item.chatName}            
+      if user.rooms
+        each item in user.rooms
           a.linksToChat(href = '/startRoom/' + item.roomName )
             div.chats #{item.roomName}
 script(type='text/javascript', src= "https://cdn.socket.io/socket.io-1.4.5.js")

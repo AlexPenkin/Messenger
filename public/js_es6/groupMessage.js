@@ -19,7 +19,7 @@ send.addEventListener("click", function(event) {
     groupMessage.emit('sendOnServer', {
       message: input.value,
       user: USER
-    });
+    });  
   } else {
     alert("Пустое поле");
   }

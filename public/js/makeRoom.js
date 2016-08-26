@@ -59,7 +59,7 @@ function sendRoom() {
   };
 
   xhr.onerror = function () {
-    reject(new Error("Network Error"));
+    throw new Error("Network Error");
   };
 }
 

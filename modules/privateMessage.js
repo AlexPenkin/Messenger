@@ -20,15 +20,21 @@ privateMessage.on('connection', function(socket) {
       .then(resp => console.log(resp + "dasdasd"))
       .then(privateMessage.to(sockets[socket.id].PMID + '').emit('serverRes', `${sockets[socket.id].sender} : ${data.message}`))
       .catch(err => console.log(err));
+    app.notificationEmitter.emit(
+      'messageNotification',
+      `${sockets[socket.id].sender}`,
+      `${data.message}`,
+      [sockets[socket.id].recipient]
+    );
   });
 })
 
-privateMessage.on('disconnect', function (socket) {
+privateMessage.on('disconnect', function(socket) {
 
   sockets.splice(sockets.indexOf(socket.id), 1);
 
-    console.log('disconnect');
-  });
+  console.log('disconnect');
+});
 
 function updateUsersWithChat(sender, recipient, pmid, message) {
   return new Promise((resolve, reject) => {
