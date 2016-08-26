@@ -16,12 +16,11 @@ const notificationEmitter = new EventEmitter();
 var passport = require(__dirname + '/modules/passport.js')
 module.exports.Busboy = Busboy = require('busboy');
 
-
-
 var d = new Date();
 
 server.listen('7777', () => console.log(`App worked on port 7777 ${d.toLocaleString()}`));
 const io = require('socket.io')(server);
+notificationEmitter.setMaxListeners(1000);
 module.exports.io = io;
 module.exports.mkdirp = mkdirp;
 module.exports.gm = gm;

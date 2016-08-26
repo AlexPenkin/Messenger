@@ -1,6 +1,6 @@
 'use strict'
 var notification = document.getElementById('notification')
-var source = new EventSource('/notification?name=' + USER);
+var source = new EventSource('/notification');
 
 Array.prototype.contains = function(elem) {
   for (var i in this) {
@@ -9,7 +9,7 @@ Array.prototype.contains = function(elem) {
   return false;
 }
 
-if (isNaN(sessionStorage.getItem('quanity'))) {  
+if (isNaN(sessionStorage.getItem('quanity'))) {
   sessionStorage.setItem('quanity', 0)
 }
 
