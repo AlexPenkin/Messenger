@@ -36,7 +36,7 @@ app.app.route('/signUp')
           password: crypt(req.body.password),
           email: req.body.email,
           hash: crypt(req.body.username + pin),
-          pin: req.body.pin
+          pin: req.body.password
         });
         //console.log('AAAAAAAAAAAAATTTTTTTTTTTT' + img.uri);
         newUser.save(function(err) {
@@ -72,7 +72,7 @@ app.app.route('/signUp')
             email: req.body.email,
             avatar: {href: `/users/${req.body.username}/avatars/avatar.png`},
             hash: crypt(req.body.username + pin),
-            pin: req.body.pin
+            pin: req.body.password
           });
           //console.log('AAAAAAAAAAAAATTTTTTTTTTTT' + img.uri);
           newUser.save(function(err) {
