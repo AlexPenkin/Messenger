@@ -66,10 +66,11 @@ var assignUser = require(__dirname + '/modules/routes/assignUser.js');
 var unassignUser = require(__dirname + '/modules/routes/unassignUser.js');
 var contacts = require(__dirname + '/modules/routes/contacts.js');
 var chat = require(__dirname + '/modules/routes/chat.js');
-var chat = require(__dirname + '/modules/routes/upload.js');
-var chat = require(__dirname + '/modules/routes/makeRoom.js');
-var chat = require(__dirname + '/modules/routes/groupMessage.js');
-var chat = require(__dirname + '/modules/routes/notification.js');
+var upload = require(__dirname + '/modules/routes/upload.js');
+var makeRoom = require(__dirname + '/modules/routes/makeRoom.js');
+var groupMessage = require(__dirname + '/modules/routes/groupMessage.js');
+var notification = require(__dirname + '/modules/routes/notification.js');
+var basic = require(__dirname + '/modules/routes/basic.js');
 
 app.get("/:page?", function(req, res) {
   var page = req.params.page;

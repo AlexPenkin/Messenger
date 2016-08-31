@@ -1,24 +1,24 @@
 block header
 div.header#header
   div#moveBack
-  
+
 div.headerWrap.drawer.drawer--left
   header(role="banner")
     button(type="button").drawer-toggle.drawer-hamburger
       span.sr-only toggle navigation
       span.drawer-hamburger-icon
 
-  nav(role="navigation").drawer-nav
-    ul
-      li #{user.username}
-      if(user.role == 'admin')
-        a(href = '/adminPanel') Админка
-      br
-      a(href = '/contacts') Контакты
-      br
-      a(href = '/makeRoom') Сделать комнату
-      br
-      button#logOut Выйти
+    nav(role="navigation").drawer-nav
+      ul.drawer-menu
+        li #{user.username}
+        if(user.role == 'admin')
+          a(href = '/adminPanel') Админка
+        br
+        a(href = '/contacts') Контакты
+        br
+        a(href = '/makeRoom') Сделать комнату
+        br
+        button#logOut Выйти
 
 
 script.

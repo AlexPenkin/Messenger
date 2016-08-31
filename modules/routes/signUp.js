@@ -2,6 +2,7 @@
 var app = require(__dirname + '/../../app.js');
 const User = require(__dirname + '/../schemaes/User.js');
 const crypt = require(__dirname + '/../crypt.js');
+var pin = 1234;
 
 function randomInteger(min, max) {
   var rand = min - 0.5 + Math.random() * (max - min + 1)
@@ -11,11 +12,10 @@ function randomInteger(min, max) {
 
 var img = {};
 
-
-
 var arrayOfColors = ['#99ffcc', '#4dffa6', '#8f246b', '#1a75ff', '#4d94ff', '#00e6e6', '#ff8080', '#800000', '#ff7733'];
 
 app.app.route('/signUp')
+
   .get(function(req, res, next) {
     if (!req.user) {
       res.render('signUp');
@@ -25,19 +25,18 @@ app.app.route('/signUp')
   })
   .post(function(req, res, next) {
 
-
     drawAvatar()
       .then(res => resizeAvatar())
       .then(res => saveUser())
       //.then(res => deleteAvatar())
       .catch(err => {
-        console.log(err);
         var newUser = new User({
           username: req.body.username,
           usernameLow: req.body.username.toLowerCase(),
           password: crypt(req.body.password),
           email: req.body.email,
-
+          hash: crypt(req.body.username + pin),
+          pin: req.body.pin
         });
         //console.log('AAAAAAAAAAAAATTTTTTTTTTTT' + img.uri);
         newUser.save(function(err) {
@@ -48,11 +47,14 @@ app.app.route('/signUp')
           } else {
 
             if (err) console.error(err)
-            else console.log(`Saved!`);
+            else {
+              console.log(`Saved!`);}
+              res.status(200).send({
+                message: 'Успешная регистрация',
+                hash: crypt(req.body.username + pin)
+              });
           }
         });
-
-
       })
 
 
@@ -68,7 +70,9 @@ app.app.route('/signUp')
             usernameLow: req.body.username.toLowerCase(),
             password: crypt(req.body.password),
             email: req.body.email,
-            avatar: {href: `/users/${req.body.username}/avatars/avatar.png`}
+            avatar: {href: `/users/${req.body.username}/avatars/avatar.png`},
+            hash: crypt(req.body.username + pin),
+            pin: req.body.pin
           });
           //console.log('AAAAAAAAAAAAATTTTTTTTTTTT' + img.uri);
           newUser.save(function(err) {
@@ -79,15 +83,17 @@ app.app.route('/signUp')
             } else {
 
               if (err) console.error(err)
-              else console.log(`Saved!`);
-              res.status(200).send('Успешно, сейчас вы будете перенаправлены!');
+              else {
+              console.log(`Saved!`);
+              res.status(200).send({
+                message: 'Успешная регистрация',
+                user: req.body.username,
+                hash: crypt(req.body.password)
+              });
             }
-          });
-
+          }});
           return data
         })
-
-        console.log('THIS IS SHOULD WORK!!!' + aa);
 
       });
     }
@@ -115,7 +121,6 @@ app.app.route('/signUp')
       })
     }
 
-
     function resizeAvatar() {
       return new Promise((resolve, reject) => {
         console.log(2);
@@ -126,10 +131,6 @@ app.app.route('/signUp')
               console.error(err)
               reject(err)
             } else {
-
-
-
-              console.log(`Pic resized!`)
               resolve('all good');
             }
           });
@@ -151,14 +152,4 @@ app.app.route('/signUp')
         })
       })
     }
-
-
-
-
-
-
-
-
-
-
   })

@@ -1,16 +1,38 @@
 'use strict';
 
+function make_base_auth(user, password) {
+  var tok = user + ':' + password;
+  var hash = btoa(tok);
+  return "Basic " + hash;
+}
+
 var buttonSend, username, password, message;
 
 function login(url) {
-  var body = 'username=' + encodeURIComponent(username.value) + '&password=' + encodeURIComponent(password.value);
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/login');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send(body);
-    xhr.onload = function () {
 
+    try {
+      var auth = make_base_auth(username.value, password.value);
+    } catch (e) {
+      console.log(e);
+    }
+
+    try {
+      xhr.open('GET', '/basic');
+    } catch (e) {
+      console.log(e);
+    }
+
+    try {
+      xhr.setRequestHeader('Authorization', make_base_auth(username.value, password.value));
+    } catch (e) {
+      console.log(e);
+    }
+
+    xhr.send();
+
+    xhr.onload = function () {
       if (this.status == 200) {
         if (JSON.parse(this.response).status == 'success') {
           message.innerHTML = JSON.parse(this.response).message;
@@ -42,12 +64,12 @@ function addMultipleListeners(element, events, handler, useCapture, args) {
 }
 
 function handler(e) {
-  login('/login').then(function (response) {
+  login('/basic').then(function (response) {
     return setTimeout(function () {
       window.location.replace("/");
     } /*2000*/);
   }).catch(function (error) {
-    return message.innerHTML = 'Неправильный логин или пароль';
+    return message.innerHTML = error;
   });
 };
 
@@ -65,23 +87,4 @@ document.addEventListener("DOMContentLoaded", function () {
   password = document.getElementById('password');
   message = document.getElementById('message');
   addMultipleListeners(buttonSend, ['touchstart', 'click'], handler, false);
-
-  /*buttonSend.addEventListener("click", function() {
-    login('/login').then(response => setTimeout(function() {
-      console.log('there');
-      window.location.replace("/");
-    }*/
-  /*2000*/
-  /*)).catch(error => message.innerHTML = 'Неправильный логин или пароль')
-   });
-   buttonSend.addEventListener("touchstart", function() {
-     login('/login').then(response => setTimeout(function() {
-       console.log('there');
-       window.location.replace("/");
-     } */
-  /*2000*/
-  /*)).catch(error => message.innerHTML = 'Неправильный логин или пароль')
-   });*/
-  //}
-
 });

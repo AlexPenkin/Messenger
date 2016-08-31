@@ -71,6 +71,7 @@ var Notification = function () {
 var not = new Notification();
 not.showNotification();
 sessionStorage.setItem('quanity', not.quanity);
+
 source.addEventListener('message', function (e) {
   var jso = JSON.stringify(e.data);
   encodeURIComponent(jso);

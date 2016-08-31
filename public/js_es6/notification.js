@@ -23,7 +23,7 @@ class Notification {
     this.header = document.getElementById('header');
     this.header.appendChild(this.notificator);
     var self = this;
-    this.notificator.addEventListener('click', function(){
+    this.notificator.addEventListener('click', function() {
       self.hideNotification.call(self);
     });
   }
@@ -47,6 +47,7 @@ class Notification {
   makeSound() {
     this.audio.play();
   }
+
   stopSound() {
     this.audio.pause();
     this.audio.currentTime = 0;
@@ -56,6 +57,7 @@ class Notification {
 var not = new Notification;
 not.showNotification();
 sessionStorage.setItem('quanity', not.quanity);
+
 source.addEventListener('message', function(e) {
   var jso = JSON.stringify(e.data)
   encodeURIComponent(jso)

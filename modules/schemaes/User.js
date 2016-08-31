@@ -47,6 +47,8 @@ var User = new db.Schema({
   password: String,
   email: String,
   online: String,
+  hash: String,
+  pin: Number,
   date: {
     type: Date,
     default: Date.now

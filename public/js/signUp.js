@@ -24,7 +24,7 @@ function ready() {
       message.innerHTML = res;
       setTimeout(function () {
         window.location.replace("/");
-      }, 2000);
+      }, 20000);
     }).catch(function (err) {
       message.innerHTML = 'Ошибка сохранения в базу данных';
     });
@@ -34,7 +34,7 @@ function ready() {
       message.innerHTML = res;
       setTimeout(function () {
         window.location.replace("/");
-      }, 2000);
+      }, 20000);
     }).catch(function (err) {
       message.innerHTML = 'Ошибка сохранения в базу данных';
     });
@@ -50,7 +50,8 @@ function signUp(url) {
     xhr.send(body);
     xhr.onload = function () {
       if (this.status == 200) {
-        resolve(this.response);
+        console.log('200');
+        resolve(JSON.parse(this.response).message);
       } else {
         var error = new Error(this.statusText);
         error.code = this.status;
