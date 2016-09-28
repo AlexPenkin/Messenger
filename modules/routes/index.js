@@ -7,8 +7,7 @@ var Me = class Me {
     this.username = username;
     this.user = userObj;
   }
-
-}
+};
 
 app.app.route('/')
 
@@ -42,6 +41,9 @@ app.app.route('/')
         });
       });
 
+
+
+
       function makeObj(user) {
         return new Promise((resolve, reject) => {
           let me = new Me(req.user.username, user);
@@ -49,7 +51,7 @@ app.app.route('/')
         })
       }
 
-      findMe.then(resp => makeObj(resp).then(resp => {      
+      findMe.then(resp => makeObj(resp).then(resp => {
         res.render('index', resp);
       })).catch(err => console.log(err));
 

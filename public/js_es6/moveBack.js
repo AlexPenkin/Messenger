@@ -8,5 +8,5 @@ if (window.location.pathname == '/'){
 }
 
 moveBackBut.addEventListener('click', ev => {
-window.history.back();
+window.history.go(-1);
 });

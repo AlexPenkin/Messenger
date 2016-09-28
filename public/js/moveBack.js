@@ -9,5 +9,5 @@ if (window.location.pathname == '/') {
 }
 
 moveBackBut.addEventListener('click', function (ev) {
-  window.history.back();
+  window.history.go(-1);
 });

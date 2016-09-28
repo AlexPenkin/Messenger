@@ -216,16 +216,17 @@ body, html {
   width: 20px;
   height: 20px;
   position: absolute;
-  left: 115px;
-  top: 21px;
+  left: 90px;
+  top: 19px;
   background: url(../img/last-track-left-arrow.png);
   background-size: contain;
 }
 .avatar {
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
   margin-right: 20px;
   background: black;
+  border-radius: 150px;
 }
 .usAva {
   height: 150px;

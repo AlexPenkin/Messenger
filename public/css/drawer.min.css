@@ -126,7 +126,8 @@
     transform: translateZ(0);
     border: 0;
     outline: 0;
-    background-color: transparent
+    background-color: transparent;
+    margin-left: 22px;
 }
 
 .drawer-hamburger:hover {
