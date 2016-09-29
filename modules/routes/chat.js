@@ -42,6 +42,7 @@ app.app.route('/startChat/:username')
               reject(err);
               console.log(err);
             } else {
+              console.log("111111111111111111" + pers);
               self = pers;
               obj['user'] = self;
               resolve(self);
@@ -50,7 +51,7 @@ app.app.route('/startChat/:username')
         });
       };
 
-      function findRecipient() {
+      function findRecipient(username) {
         return new Promise((resolve, reject) => {
           User.findOne({
             username: recipient
@@ -120,16 +121,23 @@ app.app.route('/startChat/:username')
           }
         }
       }
-
+      let cash;
       findYourSelf().then(resp => {
           checkChat(resp);
+          cash = resp.username;
+          console.log(cash);
         })
         .then(resp => {
-          return findRecipient()
+          return findRecipient(resp)
         })
         .then(resp => {
-          checkChat(resp);
-          res.render('messagePage', userObj);
+          if (cash == resp.username) {
+            res.render('messagePage', userObj);
+            console.log('AGA!');
+          } else {
+            checkChat(resp);
+            res.render('messagePage', userObj);
+          }
         })
         .catch(err => {
           console.log('Fatal Error' + err)

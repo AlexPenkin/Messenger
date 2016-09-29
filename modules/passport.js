@@ -14,6 +14,7 @@ passport.use(new AuthBasic(
       hash: password
     }, function(err, user) {
       if (err) {
+        console.log(user);
         console.log('1');
         return done(err);
       }
@@ -24,7 +25,7 @@ passport.use(new AuthBasic(
       if ((user.hash != password) && ((user.pin + '') != username)) {
         console.log('3');
         return done(null, false);
-      }    
+      }
       return done(null, user);
     });
   }
