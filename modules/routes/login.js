@@ -9,7 +9,7 @@ app.app.route('/login')
       res.redirect('/')
     }
   })
-  .post(passport.authenticate('local', {
+  .post(passport.authenticate('basic', {
     /*successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: false*/
