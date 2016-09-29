@@ -6,7 +6,10 @@ block index
       if user.conversations
         each item, i in user.conversations
           a.linksToChat(href = 'startChat/' + (item.initializator == user.username ? item.participant : item.initializator) )
-            div.chats #{item.chatName}   #{item.messages[item.messages.length-1].name} написал #{item.messages[item.messages.length-1].message} в #{item.messages[item.messages.length-1].date.getHours()}:#{item.messages[item.messages.length-1].date.getMinutes()}
+            if item.messages[item.messages.length-1]
+              div.chats #{item.chatName}   #{item.messages[item.messages.length-1].name} написал #{item.messages[item.messages.length-1].message} в #{item.messages[item.messages.length-1].date.getHours()}:#{item.messages[item.messages.length-1].date.getMinutes()}
+            else
+              div.chats #{item.chatName}
       if user.rooms
         each item, i in user.rooms
           a.linksToChat(href = '/startRoom/' + item.roomName )
