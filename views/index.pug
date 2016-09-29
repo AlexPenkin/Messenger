@@ -8,7 +8,7 @@ block index
           a.linksToChat(href = 'startChat/' + (item.initializator == user.username ? item.participant : item.initializator) )
             if item.messages[item.messages.length-1]
               div.chats
-                span  #{item.initializator == user.username ? item.participant : item.initializator} #{item.messages[item.messages.length-1].name != user.username ? item.messages[item.messages.length-1].name :'' }  #{item.messages[item.messages.length-1].message} в #{item.messages[item.messages.length-1].date.getHours()}:#{(item.messages[item.messages.length-1].date.getMinutes()+'').length}
+                span  #{item.initializator == user.username ? item.participant : item.initializator} #{item.messages[item.messages.length-1].name != user.username ? item.messages[item.messages.length-1].name :'' }  #{item.messages[item.messages.length-1].message} в #{item.messages[item.messages.length-1].date.getHours()}:#{(item.messages[item.messages.length-1].date.getMinutes()+'').length == 1 ? '0' + item.messages[item.messages.length-1].date.getMinutes() : item.messages[item.messages.length-1].date.getMinutes()   }
             else
               div.chats #{item.chatName}
       if user.rooms
