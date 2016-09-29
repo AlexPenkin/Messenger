@@ -8,7 +8,7 @@ const User = require(__dirname + '/schemaes/User.js');
 var AuthBasic = require('passport-http').BasicStrategy;
 
 
-/*passport.use(new AuthBasic(
+passport.use(new AuthBasic(
   function(pin, hash, done) {
     User.findOne({
       hash: hash
@@ -29,17 +29,17 @@ var AuthBasic = require('passport-http').BasicStrategy;
       return done(null, user);
     });
   }
-));*/
+));
 
 passport.use(new AuthBasic(
   function(pin, hash, done) {
-    console.log('inited');
+
     User.findOne({
       hash: hash
     }, function(err, user) {
       console.log(user);
       if (err) {
-        return done(err);
+        return done('err ' + err);
         console.log(1);
       }
       if (!user) {

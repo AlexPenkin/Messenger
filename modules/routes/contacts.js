@@ -13,10 +13,7 @@ app.app.route('/contacts')
             reject(err);
             console.log(err);
           } else {
-
-            resolve({
-                user: pers
-              });
+            resolve(pers);
           }
         });
       });
@@ -28,31 +25,30 @@ app.app.route('/contacts')
       }
 
 
-function findContacts() {
+function findContacts(user) {
   return new Promise ((resolve, reject) => {
     var obj = {};
-    obj.user = req.user;
+    obj.user = user;
     //obj.user = req.user;
     obj.contactss = [];
     console.log(1);
     if (req.user.contacts.length != 0){
-    for (let i = 0; i < req.user.contacts.length; i++) {
+    for (let i = 0; i < user.contacts.length; i++) {
       console.log('I: ' + i);
-      User.findOne({username: req.user.contacts[i]}, function(err, pers) {
+      User.findOne({username: user.contacts[i]}, function(err, pers) {
         if (err) {
           console.log(err);
           throw new Error('Контакты скорее всего пусты + 1');
           reject(err)
-        } else if (i == (req.user.contacts.length - 1)) {
-          console.log(pers);
+        } else if (i == (user.contacts.length - 1)) {
           obj.contactss.push({
             name : pers.username,
             avatar : pers.avatar ? pers.avatar.href : ''
            })
+           console.log("obj" + obj);
           resolve(obj);
         }
           else {
-            console.log(pers);
             obj.contactss.push({
               name : pers.username,
               avatar : pers.avatar ? pers.avatar.href : ''
@@ -70,7 +66,7 @@ function findContacts() {
 }
 
       findYourSelf()
-      .then(resp => findContacts())
+      .then(resp => findContacts(resp))
       .then(resp => res.render('contacts', resp))
       .catch(err => {
         console.log(err);
