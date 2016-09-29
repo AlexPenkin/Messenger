@@ -10,7 +10,6 @@ function login(url) {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send(body);
     xhr.onload = function () {
-
       if (this.status == 200) {
         if (JSON.parse(this.response).status == 'success') {
           message.innerHTML = JSON.parse(this.response).message;
@@ -22,7 +21,6 @@ function login(url) {
         reject(error);
       }
     };
-
     xhr.onerror = function () {
       reject(new Error("Network Error"));
     };
