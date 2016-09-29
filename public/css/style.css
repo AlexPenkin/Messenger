@@ -171,21 +171,28 @@ body, html {
 .linksToChat {
   text-decoration: none;
   color: black;
+  position: relative;
 }
 .linksToChat:hover {
   text-decoration: none;
   color: black;
 }
 .chats {
-  padding: 25px 0;
+  /*padding: 25px 0;*/
   border-bottom: solid thin #b2b2b2;
+  position: relative;
+  height: 55px;
+  display: flex;
+  align-items: center;
 }
+
 .header {
   position: fixed;
   height: 60px;
   width: 100%;
   background-color: #6389a8;
   z-index: 1;
+
 }
 /*.drawer-nav> ul {
   height: 60px;
@@ -194,6 +201,9 @@ body, html {
 }*/
 .indexWrap {
   margin-top: 60px;
+}
+.lmr {
+  left: 60px;
 }
 .adminWrap {
   margin-top: 60px;
@@ -247,6 +257,31 @@ body, html {
   justify-content: center;
   align-items: center;
   transition: all 0.5s;
+}
+.messageTime {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: gray;
+}
+.chatWith {
+  position: absolute;
+  top: 0;
+}
+.lastMessageFrom {
+  color:blue;
+}
+.chatMessage {
+  color: gray;
+}
+.roomMess {
+  position: absolute;
+  bottom: 0;
+  left: 60px;
+}
+.cmm {
+  position: absolute;
+  bottom: 0;
 }
 
 button, button:active, button:focus {
