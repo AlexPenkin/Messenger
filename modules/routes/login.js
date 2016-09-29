@@ -9,11 +9,7 @@ app.app.route('/login')
       res.redirect('/')
     }
   })
-  .post(passport.authenticate('basic', {
-    /*successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: false*/
-  }), function(req, res, next) {
+  .post(passport.authenticate('basic', { session: true }), function(req, res, next) {  
     res.status(200).send({
       status: 'success',
       message: 'Успешно, сейчас вы будете перенаправлены!'

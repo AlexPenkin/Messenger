@@ -125,15 +125,13 @@ app.app.route('/startChat/:username')
       findYourSelf().then(resp => {
           checkChat(resp);
           cash = resp.username;
-          console.log(cash);
         })
         .then(resp => {
           return findRecipient(resp)
         })
         .then(resp => {
           if (cash == resp.username) {
-            res.render('messagePage', userObj);
-            console.log('AGA!');
+            res.render('messagePage', userObj);            
           } else {
             checkChat(resp);
             res.render('messagePage', userObj);

@@ -5,15 +5,52 @@ var buttonSend,
   password,
   message;
 
-function login(url) {
+/*function login(url) {
   var body =
-    'username=' + encodeURIComponent(username.value) +
-    '&password=' + encodeURIComponent(password.value);
+    'pin=' + encodeURIComponent(username.value) +
+    '&hash=' + encodeURIComponent(password.value);
   return new Promise(function(resolve, reject) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/login');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send(body);
+    xhr.onload = function() {
+
+      if (this.status == 200) {
+        if (JSON.parse(this.response).status == 'success') {
+          message.innerHTML = JSON.parse(this.response).message;
+          resolve(
+            this.response
+          );
+        }
+
+      } else {
+        var error = new Error(this.statusText);
+        error.code = this.status;
+        reject((error));
+      }
+    };
+
+    xhr.onerror = function() {
+      reject(new Error("Network Error"));
+    };
+  });
+}*/  function make_base_auth(user, password) {
+  var tok = user + ':' + password;
+  var hash = window.btoa(tok);
+  return "Basic " + hash;
+}
+
+function login(url) {
+
+  var auth = make_base_auth(username.value,password.value);
+  console.log(auth);
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/login');
+    xml.setRequestHeader('Authorization', auth);
+    console.log('asda');
+    xhr.send();
     xhr.onload = function() {
 
       if (this.status == 200) {

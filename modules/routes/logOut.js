@@ -3,11 +3,11 @@ var app = require(__dirname + '/../../app.js');
 app.app.route('/logOut')
   .get(function(req, res, next) {
     if(req.user){
-      console.log('LOGOUT');
+      req.session.destroy();
       req.logout();
-      req.session.destroy()
-      res.status(200).send({status: 'success'});
-      res.redirect('/login')
+      res.status(401).send({status: 'Erorr'});
+      console.log('LOGOUT');
+      res.redirect('/login');
     } else {
       res.status(400).send({status: 'Erorr'});
   }

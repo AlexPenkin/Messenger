@@ -8,30 +8,56 @@ const User = require(__dirname + '/schemaes/User.js');
 var AuthBasic = require('passport-http').BasicStrategy;
 
 
-passport.use(new AuthBasic(
-  function(username, password, done) {
+/*passport.use(new AuthBasic(
+  function(pin, hash, done) {
     User.findOne({
-      hash: password
+      hash: hash
     }, function(err, user) {
       if (err) {
         console.log(user);
         console.log('1');
-        return done(err);
+        return done(null, false);
       }
       if (!user) {
         return done(null, false);
         console.log('2');
       }
-      if ((user.hash != password) && ((user.pin + '') != username)) {
+      if ((user.hash != hash) && ((user.pin + '') != pin)) {
         console.log('3');
         return done(null, false);
       }
       return done(null, user);
     });
   }
+));*/
+
+passport.use(new AuthBasic(
+  function(pin, hash, done) {
+    console.log('inited');
+    User.findOne({
+      hash: hash
+    }, function(err, user) {
+      console.log(user);
+      if (err) {
+        return done(err);
+        console.log(1);
+      }
+      if (!user) {
+        return done(null, false);
+        console.log(2);
+      }
+      if ((user.hash != hash) && ((user.pin + '') != pin)) {
+        return done(null, false);
+        console.log(3);
+      }
+      console.log(4);
+      return done(null, user);
+
+    });
+  }
 ));
 
-app.get('/api/me',
+/*app.get('/api/me',
   passport.authenticate('basic', {
     session: false
   }),
@@ -56,16 +82,18 @@ passport.use(new LocalStrategy(
       }
       if (user.password != crypt(password)) {
 
+
         console.log('Incorrect password.');
         return done(null, false, {
           message: 'Incorrect password.'
         });
       }
+      console.log(user.password);
       console.log('logged');
       return done(null, user);
     });
   }
-));
+));*/
 
 passport.serializeUser(function(user, done) {
   done(null, user);

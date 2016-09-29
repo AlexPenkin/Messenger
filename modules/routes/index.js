@@ -52,8 +52,7 @@ app.app.route('/')
       }
 
       findMe.then(resp => makeObj(resp).then(resp => {
-        res.render('index', resp);
-        console.log(resp.user.conversations[0]);
+        res.render('index', resp);        
       })).catch(err => console.log(err));
 
 
