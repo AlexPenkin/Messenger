@@ -5,6 +5,7 @@ app.app.route('/logOut')
     if(req.user){
       console.log('LOGOUT');
       req.logout();
+      req.session.destroy()
       res.status(200).send({status: 'success'});
       res.redirect('/login')
     } else {
