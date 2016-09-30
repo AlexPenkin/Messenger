@@ -8,6 +8,11 @@ block index
           a.linksToChat(href = 'startChat/' + (item.initializator == user.username ? item.participant : item.initializator) )
             if item.messages[item.messages.length-1]
               div.chats
+                script.
+                  var itemJS = #{item},
+                  username = '#{user.username}';
+                script(type='text/javascript', src= "/../js/getAva.js")
+
                 span.chatWith  #{item.initializator == user.username ? item.participant : item.initializator}
                 //span.lastMessageFrom  #{item.messages[item.messages.length-1].name != user.username ? item.messages[item.messages.length-1].name : 'you' }:
                 span.chatMessage.cmm  #{item.messages[item.messages.length-1].message}

@@ -231,6 +231,9 @@ body, html {
   background: url(../img/last-track-left-arrow.png);
   background-size: contain;
 }
+#uUL, #aUL li {
+  cursor: pointer;
+}
 .avatar {
   width: 40px;
   height: 40px;
